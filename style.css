@@ -95,7 +95,7 @@ nav {
     font-size: clamp(4rem, 10vw, 12rem);
     /* Massive responsive text */
     margin-left: -0.05em;
-    background: linear-gradient(to bottom, #000000 0%, #333333 50%, #ffffff 100%);
+    background: linear-gradient(to bottom, #222222 0%, #ffffff 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 40px;
