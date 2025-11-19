@@ -95,10 +95,11 @@ nav {
     font-size: clamp(4rem, 10vw, 12rem);
     /* Massive responsive text */
     margin-left: -0.05em;
-    background: linear-gradient(to bottom, #fff, #888);
+    background: linear-gradient(to bottom, #ffffff 40%, #111111 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 40px;
+    opacity: 0.9;
 }
 
 .hero-intro {
@@ -160,17 +161,20 @@ section {
 .blog-card {
     display: block;
     padding: 40px;
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 32px;
-    /* Large rounded corners */
-    border: 1px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .blog-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-5px);
-    border-color: var(--border-color);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
 }
 
 .blog-meta {
