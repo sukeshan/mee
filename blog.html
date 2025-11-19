@@ -101,26 +101,8 @@
                     <p>${blogs.length} Post${blogs.length > 1 ? 's' : ''}</p>
                 `;
 
-                clusterCard.addEventListener('click', (e) => {
-                    // Create ripple
-                    const ripple = document.createElement('div');
-                    ripple.className = 'ripple';
-                    const rect = clusterCard.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = `${size}px`;
-                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
-                    clusterCard.appendChild(ripple);
-
-                    // Remove ripple after animation
-                    ripple.addEventListener('animationend', () => {
-                        ripple.remove();
-                    });
-
-                    // Open modal with a slight delay to let ripple start
-                    setTimeout(() => {
-                        openModal(category, blogs);
-                    }, 100);
+                clusterCard.addEventListener('click', () => {
+                    openModal(category, blogs);
                 });
 
                 clusterContainer.appendChild(clusterCard);
