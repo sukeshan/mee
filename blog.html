@@ -20,33 +20,153 @@
         </nav>
 
         <header class="hero" style="min-height: 50vh;">
-            <h1>Transmissions</h1>
+            <h1 class="glow-text">Transmissions</h1>
             <div class="hero-intro">
-                <p>Technical logs on AI, Tokenization, and Engineering.</p>
+                <p class="glow-text-word">Technical blogs on AI, Tokenization, and Engineering.</p>
             </div>
         </header>
 
         <section style="padding-top: 0;">
-            <div class="blog-grid">
-                <a href="blog/tokenization.html" class="blog-card">
-                    <span class="blog-meta">NLP / Optimization</span>
-                    <h3>Why We Pad + Dynamic Padding</h3>
-                    <p>Deep dive into tokenization strategies for efficient GPU training. Understanding padding, dynamic
-                        batching, and trade-offs.</p>
-                </a>
-                <a href="blog/drug-identification.html" class="blog-card">
-                    <span class="blog-meta">Computer Vision</span>
-                    <h3>Identifying Tablet Purpose</h3>
-                    <p>Using spatial information and OCR to identify drug names and their purposes from images.</p>
-                </a>
-                <a href="blog/food-recipe.html" class="blog-card">
-                    <span class="blog-meta">Retrieval</span>
-                    <h3>Food Recipe Retrieval</h3>
-                    <p>Building a search engine to find recipes based on ingredients using embedding-based and
-                        graph-based techniques.</p>
-                </a>
+            <div id="cluster-container" class="blog-grid">
+                <!-- Clusters will be injected here -->
             </div>
         </section>
+
+        <!-- Blog Modal -->
+        <div id="blog-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Cluster Title</h2>
+                <div id="modal-blog-list" class="modal-blog-grid">
+                    <!-- Blog items will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+            const blogData = [
+                {
+                    title: "Smart Batching: Train Faster, Waste Less",
+                    category: "NLP / Optimization",
+                    description: "Skip the padding tax. Learn how dynamic batching and uniform length strategies can 2x your training speed without sacrificing accuracy.",
+                    url: "blog/smart-batching.html",
+                    date: "2025-01-15" // Estimated date
+                },
+                {
+                    title: "The Tokenizer Trap: Optimizing the Unseen",
+                    category: "NLP / Optimization",
+                    description: "Uncover the hidden trade-offs in tokenizer design. Learn how fertility, compression, and vocabulary size silently impact your model's performance.",
+                    url: "blog/tokenization.html",
+                    date: "2025-01-10"
+                },
+                {
+                    title: "Identifying Tablet Purpose",
+                    category: "Computer Vision",
+                    description: "Using spatial information and OCR to identify drug names and their purposes from images.",
+                    url: "blog/drug-identification.html",
+                    date: "2024-12-20"
+                },
+                {
+                    title: "Food Recipe Retrieval",
+                    category: "Retrieval",
+                    description: "Building a search engine to find recipes based on ingredients using embedding-based and graph-based techniques.",
+                    url: "blog/food-recipe.html",
+                    date: "2024-11-05"
+                }
+            ];
+
+            // Group blogs by category
+            const clusters = blogData.reduce((acc, blog) => {
+                if (!acc[blog.category]) {
+                    acc[blog.category] = [];
+                }
+                acc[blog.category].push(blog);
+                return acc;
+            }, {});
+
+            const clusterContainer = document.getElementById('cluster-container');
+            const modal = document.getElementById('blog-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBlogList = document.getElementById('modal-blog-list');
+            const closeModal = document.querySelector('.close-modal');
+
+            // Render Clusters
+            for (const [category, blogs] of Object.entries(clusters)) {
+                const clusterCard = document.createElement('div');
+                clusterCard.className = 'blog-card cluster-card';
+                clusterCard.innerHTML = `
+                    <span class="blog-meta">Cluster</span>
+                    <h3>${category}</h3>
+                    <p>${blogs.length} Post${blogs.length > 1 ? 's' : ''}</p>
+                `;
+
+                clusterCard.addEventListener('click', (e) => {
+                    // Create ripple
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+                    const rect = clusterCard.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    clusterCard.appendChild(ripple);
+
+                    // Remove ripple after animation
+                    ripple.addEventListener('animationend', () => {
+                        ripple.remove();
+                    });
+
+                    // Open modal with a slight delay to let ripple start
+                    setTimeout(() => {
+                        openModal(category, blogs);
+                    }, 100);
+                });
+
+                clusterContainer.appendChild(clusterCard);
+            }
+
+            // Open Modal
+            function openModal(category, blogs) {
+                modalTitle.textContent = category;
+                modalBlogList.innerHTML = '';
+
+                blogs.forEach(blog => {
+                    const blogItem = document.createElement('a');
+                    blogItem.href = blog.url;
+                    blogItem.className = 'blog-card modal-blog-card';
+                    blogItem.innerHTML = `
+                        <span class="blog-meta">${blog.date || ''}</span>
+                        <h3>${blog.title}</h3>
+                        <p>${blog.description}</p>
+                    `;
+                    modalBlogList.appendChild(blogItem);
+                });
+
+                modal.style.display = 'flex';
+                // Trigger reflow for animation
+                void modal.offsetWidth;
+                modal.classList.add('show');
+            }
+
+            // Close Modal
+            closeModal.addEventListener('click', () => {
+                closeModalFunc();
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+
+            function closeModalFunc() {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300); // Match transition duration
+            }
+        </script>
 
         <footer>
             <div>
