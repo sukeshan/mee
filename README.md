@@ -1,4 +1,4 @@
-# Personal Website - Sukeshan R
+# Personal Website - Sukesh
 
 A modern, responsive personal website showcasing your professional profile. Built with HTML, CSS, and JavaScript, ready to be hosted on GitHub Pages.
 
