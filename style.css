@@ -139,7 +139,7 @@ nav {
 /* Sections */
 section {
     padding: 120px 0;
-    border-top: 1px solid var(--border-color);
+    /* border-top: 1px solid var(--border-color); Removed as per user request */
 }
 
 .section-header {
