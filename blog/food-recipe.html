@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe Retrieval</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><a href="../index.html">Sukeshan R</a></div>
+            <div class="nav-links">
+                <a href="../blog.html">Back to Blog</a>
+            </div>
+        </nav>
+
+        <article>
+            <div class="article-header">
+                <span class="blog-meta">Retrieval / Embeddings</span>
+                <h1>Food Recipe Retrieval</h1>
+            </div>
+
+            <div class="article-content">
+                <h3>Introduction</h3>
+                <p>Most of the time the user doesn’t have an ingredient of SE-recommended recipes. To address this
+                    problem I
+                    created a search engine that will retrieve food recipes based on the user-given food ingredients
+                    instead of user-given food recipes.</p>
+
+                <h3>Dataset</h3>
+                <p>We scraped data from online websites such as Times of India and All recipes. We scraped recipe
+                    title, ingredients, cuisine, category, instructions, recipe image, ratings and webpage link.</p>
+
+                <h3>Model</h3>
+                <p>We tried two methodologies for this problem:</p>
+                <ul>
+                    <li><strong>Embedding-based technique:</strong> We created embeddings for each ingredient by recipe
+                        instructions. To represent recipes in embedding space, we simply average the embeddings of each
+                        recipe’s ingredient.</li>
+                    <li><strong>Graph-based technique:</strong> Using bipartite graph retrieve recipes simply and
+                        effectively. Nodes {RA, RB, RC, RD} belong to Recipes set and nodes {IA, IB, IC, ID}
+                        belong to Ingredients set.</li>
+                </ul>
+
+                <h3>Ingredient Alternative</h3>
+                <p>In some cases, the user doesn’t have an ingredient mentioned in recipe’s instruction. To address this
+                    problem
+                    created a context based embedding for each ingredient using cosine distance function to recommend an
+                    alternative.</p>
+            </div>
+        </article>
+
+        <footer>
+            <div>
+                <p>© 2025 Sukeshan R</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

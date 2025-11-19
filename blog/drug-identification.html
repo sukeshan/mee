@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying Tablet Purpose</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><a href="../index.html">Sukeshan R</a></div>
+            <div class="nav-links">
+                <a href="../blog.html">Back to Blog</a>
+            </div>
+        </nav>
+
+        <article>
+            <div class="article-header">
+                <span class="blog-meta">Computer Vision / Healthcare</span>
+                <h1>Identifying Tablet Purpose</h1>
+            </div>
+
+            <div class="article-content">
+                <h3>Project Purpose</h3>
+                <p>One day my mom gave a bunch of tablets and asked me to find the purpose of each tablet. I tried to
+                    teach my mom to find the purpose of tablets by herself using Google, but she was a little confused.
+                    This motivated me to create an app to find the uses of the tablet by using only images.</p>
+
+                <h3>Using Spatial Information</h3>
+                <p>I found an insight when I was collecting tablet images: every company prints the drug name in bold
+                    font, and the font size is bigger than other words. First I extract the text and its coordinates
+                    from the image using OCR and I use three conditions to identify the drug names:</p>
+                <ul>
+                    <li>Text Size</li>
+                    <li>Keyword Technique</li>
+                    <li>Pixel Information</li>
+                </ul>
+
+                <h3>Text Size</h3>
+                <p>We know the drug names are printed in bold and the font size is big compared to others so I wrote
+                    conditions to filter the bold and big-size font.</p>
+
+                <h3>Keyword Technique</h3>
+                <p>Now we need to find out the keyword “tablet” from the 15 words or sentences filtered by condition-1.
+                    Sometimes OCR reads the tablet as tablt or tabalt because of poor image condition, so I split the
+                    “tablet” word into N-grams and slide through entire sentences.</p>
+            </div>
+        </article>
+
+        <footer>
+            <div>
+                <p>© 2025 Sukeshan R</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
