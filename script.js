@@ -23,21 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogData = [
         {
             title: "Why Do We Need √D_k?",
-            category: "NLP / Optimization",
+            category: "NLP",
             description: "Uncover the math behind the magic number. Why dividing by the square root of the dimension saves your gradients from vanishing.",
             url: "blog/sqrt-dk.html",
             date: "Nov 22 2025"
         },
         {
             title: "Smart Batching: Train Faster, Waste Less",
-            category: "NLP / Optimization",
+            category: "NLP",
             description: "Skip the padding tax. Learn how dynamic batching and uniform length strategies can 2x your training speed without sacrificing accuracy.",
             url: "blog/smart-batching.html",
             date: "Feb 03 2025"
         },
         {
             title: "The Tokenizer Trap: Optimizing the Unseen",
-            category: "NLP / Optimization",
+            category: "NLP",
             description: "Uncover the hidden trade-offs in tokenizer design. Learn how fertility, compression, and vocabulary size silently impact your model's performance.",
             url: "blog/tokenization.html",
             date: "Jan 02 2025"
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "Food Recipe Retrieval",
-            category: "Retrieval",
+            category: "NLP",
             description: "Building a search engine to find recipes based on ingredients using embedding-based and graph-based techniques.",
             url: "blog/food-recipe.html",
             date: "Oct 30 2022"
@@ -116,7 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = category;
         modalBlogList.innerHTML = '';
 
-        blogs.forEach((blog, index) => {
+        // Sort blogs by date (newest first)
+        const sortedBlogs = [...blogs].sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA; // Descending order (newest first)
+        });
+
+        sortedBlogs.forEach((blog, index) => {
             const blogItem = document.createElement('a'); // Changed to <a>
             blogItem.href = blog.url; // Set href
             blogItem.target = "_blank"; // Open in new tab
