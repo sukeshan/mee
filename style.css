@@ -159,23 +159,60 @@ section {
     gap: 40px;
 }
 
+/* Google-like Blog Cards */
 .blog-card {
     display: block;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 32px;
+    background: #121212;
+    /* Solid dark background */
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Very subtle border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .blog-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-5px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    /* Deep shadow on hover */
+    background: #181818;
+    /* Slightly lighter on hover */
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered List Animation */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.stagger-item {
+    opacity: 0;
+    /* Start hidden */
+    animation: popIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .blog-meta {
@@ -188,15 +225,31 @@ section {
 }
 
 .blog-card h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    /* Larger title */
+    margin-bottom: 12px;
     color: var(--text-main);
+    font-weight: 500;
+    letter-spacing: -0.02em;
 }
 
-.blog-card p {
-    font-size: 1.1rem;
+.cluster-card p {
+    font-size: 1rem;
     color: var(--text-muted);
-    font-weight: 300;
+    font-weight: 400;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 100px;
+    /* Pill shape for count */
+}
+
+.modal-blog-card p {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+    margin-top: 10px;
 }
 
 /* Footer */
@@ -291,8 +344,13 @@ footer {
 .glow-text span:hover,
 .glow-text-word span:hover {
     color: #fff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
+    -webkit-text-fill-color: #fff;
+    /* Force solid white fill */
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.6),
+        0 0 30px rgba(255, 255, 255, 0.4);
+    /* Layered neon glow */
 }
 
 /* Role Highlight Specifics */
@@ -302,7 +360,12 @@ footer {
 
 .role-highlight span:hover {
     color: #ff0000;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.4);
+    -webkit-text-fill-color: #ff0000;
+    /* Override white fill */
+    text-shadow:
+        0 0 10px rgba(255, 0, 0, 0.8),
+        0 0 20px rgba(255, 0, 0, 0.6),
+        0 0 30px rgba(255, 0, 0, 0.4);
 }
 
 /* Blog Clusters - Apple Glass Style */

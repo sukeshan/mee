@@ -14,7 +14,7 @@
             <div class="logo">Sukesh</div>
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
-                <a href="blog.html">Blog</a>
+                <a href="#blog">Blog</a>
                 <a href="mailto:sukeshram5@gmail.com">Contact</a>
             </div>
         </nav>
@@ -25,8 +25,8 @@
                 <p>
                     <span class="glow-text-word role-highlight">Senior Research Engineer</span>
                     <span class="glow-text-word">specializing in fine-tuning multimodality
-                    generative models and designing
-                    inference pipelines for internet-scale traffic.</span>
+                        generative models and designing
+                        inference pipelines for internet-scale traffic.</span>
                 </p>
 
                 <div class="current-role">
@@ -36,14 +36,29 @@
             </div>
         </header>
 
-        <section id="latest-thoughts">
+        <section id="blog">
             <div class="section-header">
-                <h2>Latest Thoughts</h2>
+                <h2 class="glow-text">Signals</h2>
+                <p class="glow-text-word" style="color: var(--text-muted); margin-top: 10px; font-size: 1.2rem;">
+                    Technical blogs on AI, Tokenization, and Engineering.</p>
             </div>
-            <div class="blog-grid">
-                <!-- Blog posts will be added here -->
+            <div id="cluster-container" class="blog-grid">
+                <!-- Clusters will be injected here -->
             </div>
         </section>
+
+        <!-- Cluster Modal -->
+        <div id="blog-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Cluster Title</h2>
+                <div id="modal-blog-list" class="modal-blog-grid">
+                    <!-- Blog items will be injected here -->
+                </div>
+            </div>
+        </div>
+
+
 
         <footer>
             <div>
